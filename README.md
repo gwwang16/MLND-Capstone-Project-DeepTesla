@@ -24,6 +24,7 @@ Databases with real-traffic video data captured and extracted 10 video clips of 
 - A window from each video frame is cropped/extracted and provide a CSV linking the window to a wheel value.
 
 A snapshot of video frame:
+
 <img src="./images/img/frame_1173.jpg" width = "320" height = "180" align=center />
     
 The CSV data format:
