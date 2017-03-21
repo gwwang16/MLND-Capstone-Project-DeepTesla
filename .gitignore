@@ -1,9 +1,0 @@
-.gitattributes
-.gitignore
-__pycache__
-.ipynb_checkpoints
-.floydignore
-.floydexpt
-FileName
-Info.ipynb
-.vscode
