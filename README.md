@@ -1,21 +1,22 @@
+# Machine Learning Engineer Nanodegree
 
-## Machine Learning Engineer Nanodegree
-### Capstone Project : DeepTesla
+## Capstone Project : DeepTesla
 
 This project is based on Course [MIT 6.S094: Deep Learning for Self-Driving Cars](http://selfdrivingcars.mit.edu/deeptesl/) and published on this [Github](https://github.com/nd009/capstone) 
 
-### Problem Statement
+## Problem Statement
 
 The goal is to predict the steering wheel angel from Tesla dataset based on the video of the forward roadway.
 
-### Requirements
+## Requirements
+
 python 3 + Keras 2.0.1 + Tensorflow 1.0.1 + Jupyter Notebook + cv2
 
 These models are trained by GPU Intensive workloads with 61G memory and 12G GPU memory on [floydhub.com](https://www.floydhub.com).
 
 The refined modle is trained ~4 hours.
 
-### Datasets and Inputs
+## Datasets and Inputs
 
 Databases with real-traffic video data captured and extracted 10 video clips of highway driving from Tesla:
 
@@ -24,6 +25,7 @@ Databases with real-traffic video data captured and extracted 10 video clips of 
 - A window from each video frame is cropped/extracted and provide a CSV linking the window to a wheel value.
 
 A snapshot of video frame:
+
 <img src="./images/img/frame_1173.jpg" width = "320" height = "180" align=center />
     
 The CSV data format:
