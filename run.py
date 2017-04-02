@@ -65,8 +65,8 @@ for epoch_id in epoch_ids:
     # import test data: epoch 10
     imgs_test, wheels_test = preprocess.load_data('test')
     imgs_test = np.array(imgs_test)
-    imgs_test = imgs_test.astype('float32')
-    imgs_test /= 255
+    #imgs_test = imgs_test.astype('float32')
+    #imgs_test /= 255
     ####################################################
 
     machine_steering = []
