@@ -2,6 +2,7 @@
 import os
 import cv2
 import params
+import numpy as np
 import pandas as pd
 
 img_height = params.img_height
@@ -30,7 +31,7 @@ def preprocess(img, color_mode='RGB'):
     if color_mode == 'YUV':
         img = cv2.cvtColor(img, cv2.COLOR_BGR2YUV)
     # Image Normalization
-    #img = img / 255.
+    # img = img / 255.
     return img
 
 
@@ -81,8 +82,31 @@ def load_data(mode, color_mode='RGB'):
         assert len(imgs) == len(wheels)
 
         cap.release()
+    if mode == 'train':
+        
+        augmented_images = []
+        augmented_measurements = []
+        for image, measurement in zip(imgs, wheels):
+            augmented_images.append(image)
+            augmented_measurements.append(measurement)
+            # Flip images to reduce bias from anti-clockwise driving
+            flipped_image = cv2.flip(image, 1)
+            flipped_measurement = float(measurement) * -1.0
+            augmented_images.append(flipped_image)
+            augmented_measurements.append(flipped_measurement)
 
-    return imgs, wheels
+        X_train = np.array(augmented_images)
+        y_train = np.array(augmented_measurements)
+        y_train = np.reshape(y_train,(len(y_train),1))
+
+    elif mode == 'test':
+        X_train = np.array(imgs)
+        y_train = np.array(wheels)
+        y_train = np.reshape(y_train,(len(y_train),1))
+    else:
+        print('Wrong mode input')
+
+    return X_train, y_train
 
 
 def load_batch(imgs, wheels):
