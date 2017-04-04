@@ -31,7 +31,7 @@ def preprocess(img, color_mode='RGB'):
     if color_mode == 'YUV':
         img = cv2.cvtColor(img, cv2.COLOR_BGR2YUV)
     # Image Normalization
-    # img = img / 255.
+    #img = img / 255.
     return img
 
 
@@ -42,8 +42,8 @@ def frame_count_func(file_path):
     return frame_count
 
 
-def load_data(mode, color_mode='RGB'):
-    '''get train or valid batch data,
+def load_data(mode, color_mode='RGB', flip=True):
+    '''get train and valid data,
     mode: train or valid, color_mode:RGB or YUV
     output: batch data.'''
     if mode == 'train':
@@ -82,29 +82,27 @@ def load_data(mode, color_mode='RGB'):
         assert len(imgs) == len(wheels)
 
         cap.release()
-    if mode == 'train':
         
-        augmented_images = []
+    if mode == 'train' and flip:
+        augmented_imgs = []
         augmented_measurements = []
         for image, measurement in zip(imgs, wheels):
-            augmented_images.append(image)
+            augmented_imgs.append(image)
             augmented_measurements.append(measurement)
-            # Flip images to reduce bias from anti-clockwise driving
+            # Flip images
             flipped_image = cv2.flip(image, 1)
             flipped_measurement = float(measurement) * -1.0
-            augmented_images.append(flipped_image)
+            augmented_imgs.append(flipped_image)
             augmented_measurements.append(flipped_measurement)
 
-        X_train = np.array(augmented_images)
+        X_train = np.array(augmented_imgs)
         y_train = np.array(augmented_measurements)
         y_train = np.reshape(y_train,(len(y_train),1))
 
-    elif mode == 'test':
+    else:
         X_train = np.array(imgs)
         y_train = np.array(wheels)
         y_train = np.reshape(y_train,(len(y_train),1))
-    else:
-        print('Wrong mode input')
 
     return X_train, y_train
 
