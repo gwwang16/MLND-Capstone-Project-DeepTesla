@@ -14,7 +14,7 @@ python 3 + Keras 2.0.1 + Tensorflow 1.0.1 + Jupyter Notebook + cv2
 
 These models are trained by GPU Intensive workloads with 61G memory and 12G GPU memory on [floydhub.com](https://www.floydhub.com).
 
-The refined modle is trained ~4 hours.
+The final modle is trained ~10 minutes.
 
 ## Datasets and Inputs
 
@@ -30,7 +30,6 @@ A snapshot of video frame:
     
 The CSV data format:
 
-
 |  ts_micro         | frame_index | wheel |
 |:-----------------:|:-----------:|:-----:|
 |  1464305394391807 | 0           | -0.5  |
@@ -40,5 +39,6 @@ The CSV data format:
 
 in which, `ts_micro` is time stamp，`frame_index` denotes frame number，`wheel` is steering wheel angle(Based on horizontal, + is clockwise, - is anticlockwise)
 
+The generated vedio looks like:
 
 ![](./images/img/gif_tesla_vgg.gif)
